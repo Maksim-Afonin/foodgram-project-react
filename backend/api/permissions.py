@@ -12,6 +12,8 @@ class IsAuthorOrReadOnly(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         if request.user and request.user.is_authenticated:
-            return (request.user.is_superuser
-                    or obj.author == request.user)
+            return (
+                request.user.is_superuser
+                or obj.author == request.user
+            )
         return False

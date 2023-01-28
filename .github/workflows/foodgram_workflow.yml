@@ -45,7 +45,7 @@ jobs:
           context: backend
           file: backend/Dockerfile
           push: true
-          tags: maksim1992/foodgram_backend:latest
+          tags: maksim1992/foodgram_final:latest
       - name: Push frontend
         uses: docker/build-push-action@v2 
         with:
@@ -65,7 +65,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd foodgram-project-react/infra
-          sudo docker pull maksim1992/foodgram_backend:latest
+          sudo docker pull maksim1992/foodgram_final:latest
           sudo docker pull maksim1992/foodgram_frontend:latest
           sudo docker-compose stop
           sudo docker-compose rm backend

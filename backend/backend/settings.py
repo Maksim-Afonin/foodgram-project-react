@@ -13,7 +13,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = [
+    'http://*51.250.26.44',
+    'https://*51.250.26.44',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

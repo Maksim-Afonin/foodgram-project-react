@@ -1,11 +1,6 @@
 version: '3.3'
 services:
 
-  frontend:
-    image: maksim1992/foodgram_frontend:latest
-    volumes:
-      - ../frontend/:/app/result_build/
-
   db:
     image: postgres:13.0-alpine
     volumes:
@@ -39,6 +34,11 @@ services:
     restart: always
     depends_on:
       - frontend
+
+  frontend:
+    image: maksim1992/foodgram_frontend:latest
+    volumes:
+      - ../frontend/:/app/result_build/
 
 volumes:
   static_value:

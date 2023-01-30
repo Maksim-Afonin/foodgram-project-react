@@ -26,12 +26,14 @@ class IngredientsViewSet(ReadOnlyModelViewSet):
     serializer_class = IngredientSerializer
     filter_backends = [IngredientSearchFilter]
     search_fields = ('^name',)
+    pagination_class = None
 
 
 class TagsViewSet(ReadOnlyModelViewSet):
     queryset = Tag.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = TagSerializer
+    pagination_class = None
 
 
 class RecipeViewSet(ModelViewSet):

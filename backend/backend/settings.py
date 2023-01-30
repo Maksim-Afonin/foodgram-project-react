@@ -16,6 +16,8 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'http://*51.250.26.44',
     'https://*51.250.26.44',
+    'http://*foodgram-bryansk.ddns.net',
+    'https://*foodgram-bryansk.ddns.net',
 ]
 
 INSTALLED_APPS = [

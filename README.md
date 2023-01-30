@@ -78,6 +78,10 @@ docker-compose exec backend python manage.py createsuperuser
 docker-compose exec backend python manage.py collectstatic --noinput
 ```
 
+## Сайт
+
+Ознакомится как выглядит и работает сат можно по ссылке - http://foodgram-bryansk.ddns.net/
+
 ## Документация API
 
 Документация по API доступна по ссылке  http://foodgram-bryansk.ddns.net/api/docs/

@@ -30,6 +30,11 @@ class IngredientsViewSet(ReadOnlyModelViewSet):
 
 
 class TagsViewSet(ReadOnlyModelViewSet):
+    """
+    В settings задан стандартный(глобальный) пагинатор. В classa-х
+    IngredientsViewSet, TagsViewSet надо отменить пагинацию,
+    поэтому использую pagination_class = None
+    """
     queryset = Tag.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = TagSerializer

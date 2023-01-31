@@ -81,6 +81,9 @@ docker-compose exec backend python manage.py collectstatic --noinput
 ## Сайт
 
 Ознакомится как выглядит и работает сат можно по ссылке - http://foodgram-bryansk.ddns.net/
+Доступ к админке:
+webmaster.bryansk@yandex.ru
+final202
 
 ## Документация API
 

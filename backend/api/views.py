@@ -48,14 +48,14 @@ class RecipeViewSet(ModelViewSet):
             return RecipeListSerializer
         return RecipeSerializer
 
-    def post_method_for_actions(request, pk, serializers):
+    def post_method_for_actions(self, request, pk, serializers):
         data = {'user': request.user.id, 'recipe': pk}
         serializer = serializers(data=data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def delete_method_for_actions(request, pk, model):
+    def delete_method_for_actions(self, request, pk, model):
         user = request.user
         recipe = get_object_or_404(Recipe, id=pk)
         model_obj = get_object_or_404(model, user=user, recipe=recipe)

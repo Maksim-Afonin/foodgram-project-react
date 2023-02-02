@@ -6,8 +6,6 @@ from django.core.management.base import BaseCommand, CommandError
 
 from recipes.models import Ingredient
 
-DATA_ROOT = os.path.join(settings.BASE_DIR, 'data')
-
 
 class Command(BaseCommand):
     help = 'loading ingredients from data in json or csv'
@@ -19,7 +17,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             with open(os.path.join(
-                    DATA_ROOT,
+                    settings.BASE_DIR,
+                    'data',
                     options['filename']),
                     'r',
                     encoding='utf-8') as f:

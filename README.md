@@ -83,11 +83,68 @@ docker-compose exec backend python manage.py collectstatic --noinput
 Ознакомится как выглядит и работает сат можно по ссылке - http://foodgram-bryansk.ddns.net/
 Доступ к админке:
 webmaster.bryansk@yandex.ru
-final202
+final2023
 
 ## Документация API
+Примеры запросов:
+Для регистрации пользователя, необходимо отправить POST запрос на адрес:
+```
+http://foodgram-bryansk.ddns.net/api/users/
+```
+Тело запроса
+```
+{
+    "email": "vpupkin@yandex.ru",
+    "username": "vasya.pupkin",
+    "first_name": "Вася",
+    "last_name": "Пупкин",
+    "password": "Qwerty123"
+}
+```
 
-Документация по API доступна по ссылке  http://foodgram-bryansk.ddns.net/api/docs/
+Для получения токена, следует отправить POST запрос на адрес:
+```
+http://foodgram-bryansk.ddns.net/api/auth/token/login/
+```
+Тело запроса
+```
+{
+    "password": "string",
+    "email": "string"
+}
+```
+
+Получить список рецептов можно отправив GET запрос на эндпоинт:
+```
+http://foodgram-bryansk.ddns.net/api/recipes/
+```
+
+Чтобы создать новый рецепт нужно отправить POST запрос на адрес(Доступно только с токеном):
+```
+http://foodgram-bryansk.ddns.net/api/recipes/
+```
+
+Тело запроса
+```
+{
+    "ingredients": [
+        {
+        "id": 1123,
+        "amount": 10
+        }
+    ],
+    "tags": [
+        1,
+        2
+    ],
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAgMAAABieywaAAAACVBMVEUAAAD///9fX1/S0ecCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNoAAAAggCByxOyYQAAAABJRU5ErkJggg==",
+    "name": "string",
+    "text": "string",
+    "cooking_time": 1
+}
+```
+
+Полная документация по API доступна по ссылке  http://foodgram-bryansk.ddns.net/api/docs/
 
 
 # Есть вопросы? Контакты:

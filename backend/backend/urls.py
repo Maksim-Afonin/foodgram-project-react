@@ -10,12 +10,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('users.urls')),
     path('api/', include('api.urls')),
+    path('admin_tools/', include('admin_tools.urls')),
 ]
-
-urlpatterns += i18n_patterns(
-    '',
-    path(r'^admin/', include(admin.site.urls)),
-)
 
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

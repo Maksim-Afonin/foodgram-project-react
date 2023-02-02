@@ -4,13 +4,10 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from django.conf.urls.i18n import i18n_patterns
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('users.urls')),
     path('api/', include('api.urls')),
-    path('admin_tools/', include('admin_tools.urls')),
 ]
 
 urlpatterns += static(

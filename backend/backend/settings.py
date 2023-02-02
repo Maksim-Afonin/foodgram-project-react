@@ -14,8 +14,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://*51.250.26.44',
-    'https://*51.250.26.44',
+    'http://*158.160.26.92',
+    'https://*158.160.26.92',
     'http://*foodgram-bryansk.ddns.net',
     'https://*foodgram-bryansk.ddns.net',
 ]

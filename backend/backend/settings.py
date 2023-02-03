@@ -14,8 +14,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://*51.250.104.71',
-    'https://*51.250.104.71',
+    'http://*84.201.137.104',
+    'https://*84.201.137.104',
     'http://*foodgram-bryansk.ddns.net',
     'https://*foodgram-bryansk.ddns.net',
 ]
@@ -23,10 +23,11 @@ CSRF_TRUSTED_ORIGINS = [
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.contenttypes',
 
     'djoser',
     'rest_framework',

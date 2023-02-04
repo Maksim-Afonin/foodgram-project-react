@@ -1,6 +1,17 @@
 from django.contrib import admin
 
+from rest_framework.authtoken.models import Token
+
 from users.models import Follow, User
+
+
+@admin.register(Token)
+class TokenAdmin(admin.ModelAdmin):
+    list_display = ['key', 'user']
+    search_fields = ['key', 'user__username']
+    ordering = ['-created']
+    verbose_name = 'Токен'
+    verbose_name_plural = 'Токены'
 
 
 @admin.register(User)

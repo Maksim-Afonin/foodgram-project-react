@@ -2,11 +2,6 @@ from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin, UserManager)
 
-from rest_framework.authtoken.models import Token
-
-Token._meta.verbose_name = 'Токен'
-Token._meta.verbose_name_plural = 'Токены'
-
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(

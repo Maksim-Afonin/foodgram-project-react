@@ -5,16 +5,6 @@ from rest_framework.authtoken.models import Token
 from users.models import Follow, User
 
 
-@admin.register(Token)
-class TokenAdmin(admin.ModelAdmin):
-    list_display = ['key', 'user']
-    search_fields = ['key', 'user__username']
-    ordering = ['-created']
-    verbose_name = 'Токен'
-    verbose_name_plural = 'Токены'
-
-
-@admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
@@ -23,6 +13,10 @@ class UserAdmin(admin.ModelAdmin):
             {'fields': ('is_active', 'is_staff',
                         'is_superuser', 'groups', 'user_permissions')}),
     )
+
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 @admin.register(Follow)

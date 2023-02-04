@@ -1,22 +1,13 @@
 from django.contrib import admin
 
-from rest_framework.authtoken.models import Token
-
 from users.models import Follow, User
 
 
+@admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'email')}),
-        ('Permissions',
-            {'fields': ('is_active', 'is_staff',
-                        'is_superuser', 'groups', 'user_permissions')}),
-    )
-
-
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+    list_display = ('id', 'username', 'email', 'first_name', 'last_name')
+    search_fields = ('username', 'email')
+    list_filter = ('username', 'email')
 
 
 @admin.register(Follow)

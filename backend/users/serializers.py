@@ -1,19 +1,11 @@
 from rest_framework import serializers
 from djoser.serializers import (
-    UserCreateSerializer, UserSerializer, TokenListSerializer)
+    UserCreateSerializer, UserSerializer)
 
 from djoser import models
 
 from .models import Follow, User
 from recipes.models import Recipe
-
-
-class CustomTokenListSerializer(TokenListSerializer):
-    class Meta:
-        model = models.Token
-        fields = ("key", "created")
-        read_only_fields = ("key", "created")
-        extra_kwargs = {"created": {"label": "Токены"}}
 
 
 class ShortRecipeSerializer(serializers.ModelSerializer):

@@ -70,7 +70,6 @@ class Recipe(models.Model):
     )
     ingredients = models.ManyToManyField(
         Ingredient,
-        editable=True,
         verbose_name='Ингредиенты',
         through='IngredientAmount',
         related_name='recipes',
@@ -115,6 +114,7 @@ class IngredientAmount(models.Model):
     )
     amount = models.PositiveSmallIntegerField(
         'Количество ингредиента',
+        blank=True,
         validators=(
             MinValueValidator(
                 1, message='Количество должно быть не меньше 1'),),

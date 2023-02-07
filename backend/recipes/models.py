@@ -5,11 +5,6 @@ from django.core.exceptions import ValidationError
 from users.models import User
 
 
-def validate_ingredients(value):
-    if not value.exists():
-        raise ValidationError("Ingredients field is required")
-
-
 class Ingredient(models.Model):
     name = models.CharField(
         'Название ингредиента',
@@ -79,7 +74,6 @@ class Recipe(models.Model):
         verbose_name='Ингредиенты',
         through='IngredientAmount',
         related_name='recipes',
-        validators=[validate_ingredients],
         blank=False,
     )
     tags = models.ManyToManyField(
@@ -118,7 +112,8 @@ class IngredientAmount(models.Model):
         Ingredient,
         on_delete=models.CASCADE,
         related_name='amounts',
-        verbose_name='Ингредиент'
+        verbose_name='Ингредиент',
+        blank=False,
     )
     amount = models.PositiveSmallIntegerField(
         'Количество ингредиента',

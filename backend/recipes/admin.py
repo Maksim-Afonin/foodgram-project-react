@@ -4,13 +4,17 @@ from .models import (
     Recipe, Tag, Ingredient, IngredientAmount, ShoppingCart, Favorite)
 
 
+class IngredientAmountInline(admin.TabularInline):
+    model = IngredientAmount
+
+
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'author', 'amount_favorites',
                     'amount_tags', 'amount_ingredients')
     list_filter = ('author', 'name', 'tags')
     search_fields = ('name',)
-    fields = '__all__'
+    inlines = [IngredientAmountInline]
 
     @staticmethod
     def amount_favorites(obj):

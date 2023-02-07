@@ -1,7 +1,13 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 
 from users.models import User
+
+
+def validate_ingredients(value):
+    if not value.exists():
+        raise ValidationError("Ingredients field is required")
 
 
 class Ingredient(models.Model):
@@ -73,6 +79,8 @@ class Recipe(models.Model):
         verbose_name='Ингредиенты',
         through='IngredientAmount',
         related_name='recipes',
+        validators=[validate_ingredients],
+        blank=False,
     )
     tags = models.ManyToManyField(
         Tag,

@@ -70,6 +70,7 @@ class Recipe(models.Model):
     )
     ingredients = models.ManyToManyField(
         Ingredient,
+        editable=True,
         verbose_name='Ингредиенты',
         through='IngredientAmount',
         related_name='recipes',

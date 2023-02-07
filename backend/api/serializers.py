@@ -88,6 +88,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         ingredients = data['ingredients']
         ingredients_list = []
         for ingredient in ingredients:
+            if not isinstance(ingredient['amount'], int):
+                raise serializers.ValidationError(
+                    'Количество ингредиентов должно быть целым числом'
+                )
             ingredient_id = ingredient['id']
             if ingredient_id in ingredients_list:
                 raise serializers.ValidationError({

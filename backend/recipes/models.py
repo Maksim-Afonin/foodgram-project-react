@@ -75,6 +75,7 @@ class Recipe(models.Model):
         through='IngredientAmount',
         related_name='recipes',
         null=False,
+        blank=False,
     )
     tags = models.ManyToManyField(
         Tag,
@@ -114,6 +115,7 @@ class IngredientAmount(models.Model):
         related_name='amounts',
         verbose_name='Ингредиент',
         null=False,
+        blank=False,
     )
     amount = models.PositiveSmallIntegerField(
         'Количество ингредиента',

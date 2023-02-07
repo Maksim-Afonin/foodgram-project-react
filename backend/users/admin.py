@@ -21,6 +21,9 @@ class TokenAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
+    """
+    Для модели пользователей включена фильтрация по имени и email
+    """
     list_display = ('id', 'username', 'email', 'first_name', 'last_name')
     search_fields = ('username', 'email')
     list_filter = ('username', 'email')

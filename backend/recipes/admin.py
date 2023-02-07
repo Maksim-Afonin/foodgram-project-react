@@ -10,6 +10,10 @@ class IngredientAmountInline(admin.TabularInline):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
+    """
+    Через админку можно добавить рецепт без ингредиентов.
+    Так как связь идет через ManyToMany.
+    """
     list_display = ('id', 'name', 'author', 'amount_favorites',
                     'amount_tags', 'amount_ingredients')
     list_filter = ('author', 'name', 'tags')

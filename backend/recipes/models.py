@@ -71,6 +71,7 @@ class Recipe(models.Model):
     )
     ingredients = models.ManyToManyField(
         Ingredient,
+        blank=False,
         verbose_name='Ингредиенты',
         through='IngredientAmount',
         related_name='recipes',
@@ -90,11 +91,6 @@ class Recipe(models.Model):
         'Дата публикации',
         auto_now_add=True
     )
-
-    def clean(self):
-        if not self.ingredients.exists():
-            raise ValidationError(
-                "Рецепт должен содержать как минимум один ингредиент")
 
     class Meta:
         ordering = ['-pub_date']

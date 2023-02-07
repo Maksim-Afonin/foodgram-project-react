@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 
 from users.models import User
 
@@ -90,6 +91,11 @@ class Recipe(models.Model):
         auto_now_add=True
     )
 
+    def clean(self):
+        if not self.ingredients.exists():
+            raise ValidationError(
+                "Рецепт должен содержать как минимум один ингредиент")
+
     class Meta:
         ordering = ['-pub_date']
         verbose_name = 'Рецепт'
@@ -114,7 +120,6 @@ class IngredientAmount(models.Model):
     )
     amount = models.PositiveSmallIntegerField(
         'Количество ингредиента',
-        blank=True,
         validators=(
             MinValueValidator(
                 1, message='Количество должно быть не меньше 1'),),

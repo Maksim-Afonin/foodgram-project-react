@@ -86,6 +86,10 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         ingredients = data['ingredients']
+        if not ingredients:
+            raise serializers.ValidationError({
+                'ingredients': 'нужно выбрать хотя бы один ингридиент'
+            })
         ingredients_list = []
         for ingredient in ingredients:
             ingredient_id = ingredient['id']

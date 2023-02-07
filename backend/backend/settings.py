@@ -9,13 +9,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='None')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://*84.201.137.104',
-    'https://*84.201.137.104',
+    'http://*51.250.25.3',
+    'https://*51.250.25.3',
     'http://*foodgram-bryansk.ddns.net',
     'https://*foodgram-bryansk.ddns.net',
 ]

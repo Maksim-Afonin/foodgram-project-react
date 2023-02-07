@@ -10,6 +10,7 @@ class RecipeAdmin(admin.ModelAdmin):
                     'amount_tags', 'amount_ingredients')
     list_filter = ('author', 'name', 'tags')
     search_fields = ('name',)
+    fields = ('__all__')
 
     @staticmethod
     def amount_favorites(obj):

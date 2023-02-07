@@ -74,7 +74,7 @@ class AddIngredientSerializer(serializers.ModelSerializer):
 class RecipeSerializer(serializers.ModelSerializer):
     tags = serializers.PrimaryKeyRelatedField(
         queryset=Tag.objects.all(), many=True)
-    ingredients = AddIngredientSerializer(many=True)
+    ingredients = AddIngredientSerializer(many=True, read_only=True,)
     author = CustomUserSerializer(read_only=True)
     image = Base64ImageField()
 
@@ -85,43 +85,25 @@ class RecipeSerializer(serializers.ModelSerializer):
             'name', 'text', 'cooking_time')
 
     def validate(self, data):
-        ingredients = data['ingredients']
-        if not ingredients:
-            raise serializers.ValidationError({
-                'ingredients': 'нужно выбрать хотя бы один ингридиент'
-            })
-        ingredients_list = []
-        for ingredient in ingredients:
-            ingredient_id = ingredient['id']
-            if ingredient_id in ingredients_list:
-                raise serializers.ValidationError({
-                    'ingredients': 'ингредиенты должны быть уникальными '
-                })
-            ingredients_list.append(ingredient_id)
-            amount = ingredient['amount']
-            if int(amount) <= 0:
-                raise serializers.ValidationError({
-                    'amount': 'количество ингредиента должно быть больше нуля '
-                })
-
-        tags = data['tags']
-        if not tags:
-            raise serializers.ValidationError({
-                'tags': 'нужно выбрать хотя бы один тэг'
-            })
-        tags_list = []
-        for tag in tags:
-            if tag in tags_list:
-                raise serializers.ValidationError({
-                    'tags': 'тэги должны быть уникальными'
-                })
-            tags_list.append(tag)
-
-        cooking_time = data['cooking_time']
-        if int(cooking_time) <= 0:
-            raise serializers.ValidationError({
-                'cooking_time': 'время приготовления должно быть больше 0 '
-            })
+        for field in ['name', 'text', 'cooking_time']:
+            if not data.get(field):
+                raise serializers.ValidationError(
+                    f'{field} - Обязательное поле'
+                )
+        if not data.get('tags'):
+            raise serializers.ValidationError(
+                'Нужно указать минимум 1 тег'
+            )
+        if not data.get('ingredients'):
+            raise serializers.ValidationError(
+                'Нужно указать минимум 1 ингредиент'
+            )
+        inrgedient_id_list = [item['id'] for item in data.get('ingredients')]
+        unique_ingredient_id_list = set(inrgedient_id_list)
+        if len(inrgedient_id_list) != len(unique_ingredient_id_list):
+            raise serializers.ValidationError(
+                'Ингредиенты должны быть уникальны'
+            )
         return data
 
     @staticmethod

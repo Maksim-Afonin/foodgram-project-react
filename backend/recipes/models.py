@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-from django.core.exceptions import ValidationError
 
 from users.models import User
 
@@ -71,7 +70,6 @@ class Recipe(models.Model):
     )
     ingredients = models.ManyToManyField(
         Ingredient,
-        blank=False,
         verbose_name='Ингредиенты',
         through='IngredientAmount',
         related_name='recipes',
@@ -110,6 +108,7 @@ class IngredientAmount(models.Model):
     )
     ingredient = models.ForeignKey(
         Ingredient,
+        blank=False,
         on_delete=models.CASCADE,
         related_name='amounts',
         verbose_name='Ингредиент'

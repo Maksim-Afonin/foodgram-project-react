@@ -100,6 +100,10 @@ class RecipeSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError({
                     'amount': 'количество ингредиента должно быть больше нуля '
                 })
+            elif int(amount) >= 11111111111:
+                raise serializers.ValidationError({
+                    'amount': 'количество ингредиента должно быть меньше'
+                })
 
         tags = data['tags']
         if not tags:
@@ -118,6 +122,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         if int(cooking_time) <= 0:
             raise serializers.ValidationError({
                 'cooking_time': 'время приготовления должно быть больше 0 '
+            })
+        elif int(cooking_time) >= 11111111111:
+            raise serializers.ValidationError({
+                'cooking_time': 'время приготовления должно быть меньше'
             })
         return data
 

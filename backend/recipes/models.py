@@ -20,7 +20,7 @@ class Ingredient(models.Model):
         verbose_name_plural = 'Ингредиенты'
         constraints = [
             models.UniqueConstraint(fields=['name', 'measurement_unit'],
-                                    name='unique ingredient')
+                                    name='unique_ingredient')
         ]
 
     def __str__(self):
@@ -73,6 +73,7 @@ class Recipe(models.Model):
         verbose_name='Ингредиенты',
         through='IngredientAmount',
         related_name='recipes',
+        blank=True,
     )
     tags = models.ManyToManyField(
         Tag,
@@ -112,7 +113,7 @@ class IngredientAmount(models.Model):
         related_name='amounts',
         verbose_name='Ингредиент',
     )
-    amount = models.PositiveSmallIntegerField(
+    amount = models.PositiveIntegerField(
         'Количество ингредиента',
         validators=(
             MinValueValidator(

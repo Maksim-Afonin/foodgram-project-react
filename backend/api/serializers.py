@@ -100,9 +100,10 @@ class RecipeSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError({
                     'amount': 'количество ингредиента должно быть больше нуля '
                 })
-            if int(amount) >= 11111111111:
+            if int(amount) >= 1111111111111111111:
                 raise serializers.ValidationError({
-                    'amount': 'количество ингредиента должно быть меньше'
+                    'amount':
+                    'кол-во ингредиента должно быть меньше 1111111111111111111'
                 })
 
         tags = data['tags']

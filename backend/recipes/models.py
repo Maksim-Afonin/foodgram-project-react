@@ -113,7 +113,7 @@ class IngredientAmount(models.Model):
         related_name='amounts',
         verbose_name='Ингредиент',
     )
-    amount = models.PositiveIntegerField(
+    amount = models.BigIntegerField(
         'Количество ингредиента',
         validators=(
             MinValueValidator(
